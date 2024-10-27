@@ -1,0 +1,25 @@
+# Zusammenfassung von GPT was wir machen müssen
+Prüfungsstruktur:
+
+Kurs: Online Marketing 2, bestehend aus Vorlesung (2 ECTS) und Übung (1 ECTS).
+Prüfungsform: KMP (Kumulative mehrdimensionale Prüfung) mit einer E-Klausur (60 Minuten) und Aufgabenabgaben.
+Aufgaben:
+
+Google Analytics Zertifikat: Zertifizierung auf Google Skillshop abschließen und das Zertifikat hochladen (30% der Abgabenbewertung).
+Generative AI Projekt: Entwicklung einer KI-Anwendung für Marketing- oder Sales-Zwecke (70% der Abgabenbewertung). Das Projekt soll praktische KI-Konzepte anwenden und folgende Punkte umfassen:
+GitHub-Repository: Code im privaten Repository „genai“ mit README.md (Projektbeschreibung, Anleitung, Funktionen, Reflexion).
+GPT-Assistent: Erstellung eines Assistenten für eine Marketingaufgabe mit ethischer Richtlinien-Berücksichtigung und dokumentierten Prompt-Techniken.
+Benutzerfreundliche Anwendung: UI (mit Streamlit, React oder NextJS) mit Eingabe- und Ausgabeoptionen, Fehlerbehandlung und Exportmöglichkeiten.
+Videopräsentation: Screencast-Video (max. 2 Minuten) zur Präsentation der Anwendung und technischen Herausforderungen.
+Bewertungskriterien (100 Punkte):
+
+Technische Umsetzung (40 Punkte): Funktionalität (30) und GitHub-Nutzung (10).
+Kreativität und Relevanz (25 Punkte): Innovation und Praktikabilität.
+Dokumentation (20 Punkte): Klarheit und Erklärung der Prompt-Techniken.
+Präsentation (15 Punkte): Qualität des Videos und Einhaltung der Zeit.
+Zusätzliche Hinweise:
+
+Datensicherheit, Skalierbarkeit und ethische Überlegungen sind zu berücksichtigen.
+Basiskenntnisse in Kommandozeile, Python, Markdown, GitHub, VS Code und Streamlit sind erforderlich.
+Alle Kapitel bis auf Daten und Datenbanken sind klausurrelevant.
+Technologische Unterstützung: Streamlit und optional Next.js, OpenAI Quickstart, Prefect, LangChain und Prompt Flow.
