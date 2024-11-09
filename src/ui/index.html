@@ -1,0 +1,51 @@
+<!-- src/ui/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>auraflow</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="tailwind.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div id="app" class="flex flex-col items-center">
+    <div class="logo-background"></div> <!-- Logo wird als Hintergrundbild angezeigt -->
+  </div>
+</body>
+</html>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const app = document.getElementById('app');
+    const loadingBar = document.createElement('div');
+    loadingBar.style.width = '0%';
+    loadingBar.style.height = '2px';
+    loadingBar.style.backgroundColor = 'white';
+    loadingBar.style.transition = 'width 3s, opacity 10s';
+    loadingBar.style.opacity = '0';
+    app.appendChild(loadingBar);
+
+    // Fade in loading bar
+    setTimeout(() => {
+      loadingBar.style.opacity = '1';
+      loadingBar.style.width = '1%';
+    }, 3000); // Ladeleiste erscheint später
+
+    // Simulate loading
+    setTimeout(() => {
+      loadingBar.style.width = '100%';
+    }, 3400);
+
+    // Remove loading bar after loading is complete
+    setTimeout(() => {
+      loadingBar.style.animation = 'glitchOut 1s forwards';
+      app.style.animation = 'glitchOut 1s forwards';
+    }, 7000); // Verzögerung für Glitch-Out-Animation
+
+    // Redirect to start.html after glitch-out animation
+    setTimeout(() => {
+      window.location.href = 'start.html';
+    }, 7777); // Verzögerung für Weiterleitung
+  });
+</script>
