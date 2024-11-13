@@ -71,3 +71,31 @@ document.addEventListener('DOMContentLoaded', () => {
       }
   });
 });
+// src/ui/renderer.js ergänzen
+document.addEventListener('DOMContentLoaded', () => {
+    // ... bestehender Code ...
+
+    // Prompt-Hilfe Funktionalität
+    const textHelpBtn = document.getElementById('show-text-help');
+    const imageHelpBtn = document.getElementById('show-image-help');
+    const textHelpModal = document.getElementById('text-help-modal');
+    const imageHelpModal = document.getElementById('image-help-modal');
+
+    textHelpBtn.addEventListener('click', () => {
+        textHelpModal.classList.toggle('show');
+        imageHelpModal.classList.remove('show');
+    });
+
+    imageHelpBtn.addEventListener('click', () => {
+        imageHelpModal.classList.toggle('show');
+        textHelpModal.classList.remove('show');
+    });
+
+    // Klick außerhalb schließt Modal
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.prompt-help')) {
+            textHelpModal.classList.remove('show');
+            imageHelpModal.classList.remove('show');
+        }
+    });
+});

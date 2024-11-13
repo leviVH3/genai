@@ -1,17 +1,15 @@
-// src/main.js
 const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('path');
 require('dotenv').config();
 const ClaudeAPI = require('./claudeapi');
 const ImageAPI = require('./imageapi');
+const PromptManager = require('./promptManager'); // Neue Zeile
 
-let mainWindow = null;
-
-// Event Handler für Text-Generierung
+// Aktualisiere den send-message Handler
 ipcMain.handle('send-message', async (event, message) => {
   try {
-    console.log('Verarbeite Text-Anfrage:', message);
-    const response = await ClaudeAPI.generateResponse(message);
+    const marketingPrompt = PromptManager.getMarketingTextPrompt(message);
+    const response = await ClaudeAPI.generateResponse(marketingPrompt);
     return response;
   } catch (error) {
     console.error('Fehler bei der Textgenerierung:', error);
@@ -19,14 +17,14 @@ ipcMain.handle('send-message', async (event, message) => {
   }
 });
 
-// Event Handler für Bild-Generierung (bereits vorhanden)
+// Aktualisiere den generate-image Handler
 ipcMain.handle('generate-image', async (event, prompt) => {
   try {
     const cleanPrompt = prompt.trim().replace(/[^\w\s]/gi, '');
     if (!cleanPrompt) throw new Error('Leerer Prompt');
     
-    console.log('Verarbeite Bildanfrage:', cleanPrompt);
-    const result = await ImageAPI.generateImage(cleanPrompt);
+    const marketingPrompt = PromptManager.getMarketingImagePrompt(cleanPrompt);
+    const result = await ImageAPI.generateImage(marketingPrompt);
     return result;
   } catch (error) {
     console.error('Bildgenerierungsfehler:', error);
