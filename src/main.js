@@ -1,5 +1,7 @@
-const { app, BrowserWindow } = require('electron');
+// main.js - Ergänze am Anfang
+const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('path');
+require('dotenv').config();
 
 function createWindow() {
   const mainWindow = new BrowserWindow({
@@ -23,4 +25,15 @@ app.on('window-all-closed', () => {
 
 app.on('activate', () => {
   if (BrowserWindow.getAllWindows().length === 0) createWindow();
+});
+// In src/main.js nach createWindow()
+const ClaudeAPI = require('./claudeapi');
+
+ipcMain.handle('send-message', async (event, message) => {
+  try {
+    return await ClaudeAPI.generateResponse(message);
+  } catch (error) {
+    console.error(error);
+    return 'Ein Fehler ist aufgetreten.';
+  }
 });
