@@ -9,58 +9,34 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
 </head>
 <body>
-<!-- src/ui/index.html -->
-<div class="split-container">
-    <!-- Linke Seite für Text -->
-    <div class="text-section">
-        <h2>Marketing Text Generator</h2>
-        <div class="prompt-help">
-            <button id="show-text-help">Prompt-Hilfe</button>
-            <div id="text-help-modal" class="modal">
-                <div class="modal-content">
-                    <h3>Marketing Text Prompts</h3>
-                    <ul>
-                        <li>Social Media Post</li>
-                        <li>Produktbeschreibung</li>
-                        <li>Call-to-Action</li>
-                        <li>SEO-Text</li>
-                    </ul>
-                    <p>Beispiel: "Erstelle einen Social Media Post für unser neues Produkt X"</p>
-                </div>
-            </div>
-        </div>
-        <div id="text-messages" class="messages"></div>
-        <div class="input-area">
-            <textarea id="text-input" placeholder="Geben Sie Ihre Textanfrage ein..."></textarea>
-            <button id="text-button">Text generieren</button>
-        </div>
-    </div>
-
-    <!-- Rechte Seite für Bilder -->
-    <div class="image-section">
-        <h2>Bild Generator</h2>
-        <div class="prompt-help">
-            <button id="show-image-help">Prompt-Hilfe</button>
-            <div id="image-help-modal" class="modal">
-                <div class="modal-content">
-                    <h3>Marketing Bild Prompts</h3>
-                    <ul>
-                        <li>Produktwerbung</li>
-                        <li>Social Media Visual</li>
-                        <li>Banner Design</li>
-                        <li>Logo Konzept</li>
-                    </ul>
-                    <p>Beispiel: "Erstelle ein Produktbild im modernen Lifestyle-Stil"</p>
-                </div>
-            </div>
-        </div>
-        <div id="image-messages" class="messages"></div>
-        <div class="input-area">
-            <textarea id="image-input" placeholder="Beschreiben Sie das gewünschte Bild..."></textarea>
-            <button id="image-button">Bild generieren</button>
-        </div>
-    </div>
-</div>
-    <script src="renderer.js"></script>
+    <div id="app" class="flex flex-col items-center">
+        <div class="logo-background"></div> <!-- Logo wird als Hintergrundbild angezeigt -->
+      </div>
 </body>
 </html>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const app = document.getElementById('app');
+    const loadingContainer = document.createElement('div');
+    const loadingBar = document.createElement('div');
+    
+    // Container für Zentrierung
+    loadingContainer.className = 'loading-container';
+    
+    // Loading-Bar
+    loadingBar.id = 'loadingBar';
+    
+    loadingContainer.appendChild(loadingBar);
+    app.appendChild(loadingContainer);
+
+    // Animation starten
+    setTimeout(() => {
+      loadingBar.style.width = '100%';
+    }, 50);
+
+    // Weiterleitung
+    setTimeout(() => {
+      window.location.href = 'dashboard.html';
+    }, 5000);
+  });
+</script>
