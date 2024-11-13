@@ -1,0 +1,72 @@
+/* style.css */
+
+/* Allgemeine Stile */
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background-color: #f0f0f0;
+  color: #333;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Flexbox-Zentrierung */
+#app {
+  animation: floatIn 1s ease-out;
+}
+
+/* Logo-Hintergrund */
+.logo-background {
+  width: 150px;
+  height: 150px;
+  background-image: url('path/to/your/logo.png'); /* Pfad zum Logo-Bild */
+  background-size: cover;
+  background-position: center;
+  margin-bottom: 20px;
+}
+
+/* Überschrift */
+h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0;
+  padding: 20px;
+  text-align: center;
+}
+
+/* Buttons */
+button {
+  font-size: 1rem;
+  padding: 10px 20px;
+  margin: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button.login {
+  background-color: #007bff;
+  color: white;
+}
+
+button.register {
+  background-color: #28a745;
+  color: white;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+/* Float-in Animation */
+@keyframes floatIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
