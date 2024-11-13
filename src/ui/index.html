@@ -1,22 +1,35 @@
 <!-- src/ui/index.html -->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI Marektinganwendung</title>
-  <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Marketing Suite</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
 </head>
 <body>
-<div class="chat-container" position=center>
-  <div id="chat-messages"></div>
-  <div class="input-area">
-    <textarea id="user-input" placeholder="Ihre Nachricht..."></textarea>
-    <button id="send-button">Senden</button>
-  </div>
-</div>
-  </div>
+    <div class="split-container">
+        <!-- Linke Seite für Text -->
+        <div class="text-section">
+            <h2>Marketing Text Generator</h2>
+            <div id="text-messages" class="messages"></div>
+            <div class="input-area">
+                <textarea id="text-input" placeholder="Geben Sie Ihre Textanfrage ein..."></textarea>
+                <button id="text-button">Text generieren</button>
+            </div>
+        </div>
+
+        <!-- Rechte Seite für Bilder -->
+        <div class="image-section">
+            <h2>Bild Generator</h2>
+            <div id="image-messages" class="messages"></div>
+            <div class="input-area">
+                <textarea id="image-input" placeholder="Beschreiben Sie das gewünschte Bild..."></textarea>
+                <button id="image-button">Bild generieren</button>
+            </div>
+        </div>
+    </div>
+    <script src="renderer.js"></script>
 </body>
 </html>
-<script src="renderer.js"></script>

@@ -1,39 +1,65 @@
-// main.js - Ergänze am Anfang
+// src/main.js
 const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('path');
 require('dotenv').config();
+const ClaudeAPI = require('./claudeapi');
+const ImageAPI = require('./imageapi');
+
+let mainWindow = null;
+
+// Event Handler für Text-Generierung
+ipcMain.handle('send-message', async (event, message) => {
+  try {
+    console.log('Verarbeite Text-Anfrage:', message);
+    const response = await ClaudeAPI.generateResponse(message);
+    return response;
+  } catch (error) {
+    console.error('Fehler bei der Textgenerierung:', error);
+    throw new Error('Textgenerierung fehlgeschlagen: ' + error.message);
+  }
+});
+
+// Event Handler für Bild-Generierung (bereits vorhanden)
+ipcMain.handle('generate-image', async (event, prompt) => {
+  try {
+    const cleanPrompt = prompt.trim().replace(/[^\w\s]/gi, '');
+    if (!cleanPrompt) throw new Error('Leerer Prompt');
+    
+    console.log('Verarbeite Bildanfrage:', cleanPrompt);
+    const result = await ImageAPI.generateImage(cleanPrompt);
+    return result;
+  } catch (error) {
+    console.error('Bildgenerierungsfehler:', error);
+    return {
+      error: true,
+      message: 'Bildgenerierung fehlgeschlagen: Bitte verwenden Sie eine andere Beschreibung.'
+    };
+  }
+});
 
 function createWindow() {
-  const mainWindow = new BrowserWindow({
-    width: 1280,
-    height: 720,
-    icon: path.join(__dirname, 'assets', 'logo.ico'), // Setzt das Icon für das Fenster
-    autoHideMenuBar: true, // Versteckt die Menüleiste
+  mainWindow = new BrowserWindow({
+    width: 1200,
+    height: 800,
     webPreferences: {
-      preload: path.join(__dirname, 'preload.js'),
-    },
+      nodeIntegration: true,
+      contextIsolation: true,
+      preload: path.join(__dirname, 'preload.js')
+    }
   });
-
-  mainWindow.loadFile(path.join(__dirname, 'ui', 'index.html'));
+  mainWindow.loadFile('ui/index.html');
 }
 
-app.on('ready', createWindow);
+app.whenReady().then(createWindow);
 
 app.on('window-all-closed', () => {
-  if (process.platform !== 'darwin') app.quit();
+  if (process.platform !== 'darwin') {
+    app.quit();
+  }
 });
 
 app.on('activate', () => {
-  if (BrowserWindow.getAllWindows().length === 0) createWindow();
-});
-// In src/main.js nach createWindow()
-const ClaudeAPI = require('./claudeapi');
-
-ipcMain.handle('send-message', async (event, message) => {
-  try {
-    return await ClaudeAPI.generateResponse(message);
-  } catch (error) {
-    console.error(error);
-    return 'Ein Fehler ist aufgetreten.';
+  if (BrowserWindow.getAllWindows().length === 0) {
+    createWindow();
   }
 });
